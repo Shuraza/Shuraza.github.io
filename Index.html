@@ -450,37 +450,52 @@
         <button type="submit">Enviar</button>
 
     </form>
-
     <script>
         document.getElementById('obdForm').addEventListener('submit', function (event) {
             event.preventDefault();
+            const button = event.target.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Enviando...';
             const formData = new FormData(event.target);
             const data = {};
             formData.forEach((value, key) => {
                 data[key] = value;
             });
-            fetch('https://script.google.com/macros/s/AKfycbxayOx-6fGLJKzuqFVqUWVq64TrsKAAHV5XjomQlK2QMs8olt4fcQpRTtUcKkuyLut__g/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbxdGPO2v2X1PoQhqvvyfrRn7KTEzi7-ofvcWcyL4N332rgwWqy53bq_M1__fG3WoWDWGg/exec', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                mode: 'cors'
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => {
+                            throw new Error(`Erro HTTP: ${response.status} ${response.statusText} - ${text}`);
+                        });
+                    }
+                    return response.json();
+                })
                 .then(result => {
+                    button.disabled = false;
+                    button.textContent = 'Enviar';
                     if (result.result === 'success') {
                         alert('Dados enviados com sucesso!');
+                        event.target.reset();
                     } else {
-                        alert('Erro ao enviar os dados.');
+                        alert(`Erro ao enviar os dados: ${result.message || 'Resposta inválida do servidor'}`);
                     }
                 })
                 .catch(error => {
-                    console.error('Erro ao enviar os dados:', error);
-                    alert('Ocorreu um erro ao enviar os dados.');
+                    button.disabled = false;
+                    button.textContent = 'Enviar';
+                    console.error('Erro ao enviar os dados:', error.message);
+                    alert(`Ocorreu um erro ao enviar os dados: ${error.message}`);
                 });
         });
     </script>
-
 </body>
 
 </html>
