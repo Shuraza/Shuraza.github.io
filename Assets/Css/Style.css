@@ -1,0 +1,241 @@
+body {
+    background-color: #4C4B4B;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+header {
+    background-color: black;
+    padding: 1rem 0; 
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: clamp(24px, 5vw, 32px); 
+    font-weight: 1000;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.sub-titulo {
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-size: clamp(18px, 4vw, 22px); 
+    font-weight: bolder;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+.colunas-ext {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem; 
+    padding: 1rem;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    flex: 1 1 180px; 
+    max-width: 220px; 
+}
+
+.caixa-exterior {
+    width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.caixa, .caixa2 {
+    height: clamp(150px, 25vw, 180px);
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.caixa {
+    background-color: #EECFCF;
+}
+
+.caixa2 {
+    background-color: #4E7BDC;
+}
+
+.checkbox {
+    padding-top: 0.75rem;
+    font-size: clamp(10px, 2.5vw, 12px); 
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.checkbox input[type="radio"] {
+    display: none;
+}
+
+.checkbox label {
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: clamp(10px, 2.5vw, 12px); 
+    text-align: center;
+    min-width: 50px; 
+}
+
+.checkbox input[type="radio"]:checked + label {
+    color: white;
+}
+
+.checkbox input[type="radio"][value="otimo"]:checked + label {
+    background-color: #28a745; 
+}
+
+.checkbox input[type="radio"][value="bom"]:checked + label {
+    background-color: #ffc107;
+    color: black;
+}
+
+.checkbox input[type="radio"][value="ruim"]:checked + label {
+    background-color: #dc3545;
+}
+
+textarea {
+    background-color: transparent;
+    border: 0;
+    height: clamp(80px, 15vw, 100px); 
+    width: 100%;
+    color: black;
+    outline: none;
+    resize: none;
+    font-size: clamp(12px, 2.5vw, 14px); 
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    margin: 1.5rem auto;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 30px);
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: clamp(14px, 3vw, 16px); 
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    min-width: 120px; 
+}
+
+button:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+}
+
+button:disabled {
+    background: linear-gradient(135deg, #6c757d 0%, #5c636a 100%);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+@media (max-width: 768px) {
+    .colunas-ext {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .coluna {
+        margin: 0.5rem 0;
+        max-width: 90%; 
+        flex: 1 1 100%;
+    }
+
+    .caixa, .caixa2 {
+        height: clamp(120px, 30vw, 150px);
+    }
+
+    textarea {
+        height: clamp(60px, 20vw, 80px); 
+        font-size: clamp(11px, 2.8vw, 13px);
+    }
+
+    .checkbox {
+        gap: 0.3rem;
+    }
+
+    .checkbox label {
+        padding: 0.3rem 0.5rem;
+        font-size: clamp(9px, 2.5vw, 11px);
+        min-width: 40px;
+    }
+
+    button {
+        padding: clamp(8px, 2vw, 10px) clamp(15px, 4vw, 25px);
+        font-size: clamp(13px, 3vw, 15px);
+    }
+
+    .titulo {
+        font-size: clamp(20px, 5vw, 28px);
+    }
+
+    .sub-titulo {
+        font-size: clamp(16px, 4vw, 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .coluna {
+        max-width: 95%; 
+    }
+
+    .caixa, .caixa2 {
+        height: clamp(100px, 35vw, 120px); 
+    }
+
+    textarea {
+        height: clamp(50px, 20vw, 70px);
+        font-size: clamp(10px, 2.8vw, 12px);
+    }
+
+    .checkbox label {
+        font-size: clamp(8px, 2.5vw, 10px);
+        padding: 0.2rem 0.4rem;
+        min-width: 35px;
+    }
+
+    button {
+        padding: clamp(6px, 2vw, 8px) clamp(10px, 4vw, 20px);
+        font-size: clamp(12px, 3vw, 14px);
+        min-width: 100px;
+    }
+}
